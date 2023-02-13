@@ -1,6 +1,6 @@
 import { IGameboard } from "./Gameboard";
 
-interface IPlayer {
+export interface IPlayer {
   name: string;
   alreadyHitCoords: number[][];
   attack(positionX: number, positionY: number, gameboard: IGameboard): void;
@@ -8,7 +8,7 @@ interface IPlayer {
   hasAlreadyHit(positionX: number, positionY: number): boolean;
 }
 
-function createPlayer(name: string): IPlayer {
+export default function createPlayer(name: string): IPlayer {
   const alreadyHitCoords: number[][] = [];
 
   const attack = (
@@ -45,5 +45,3 @@ function createPlayer(name: string): IPlayer {
 
   return { name, alreadyHitCoords, attack, randomAttack, hasAlreadyHit };
 }
-
-export default createPlayer;
