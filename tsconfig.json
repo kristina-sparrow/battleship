@@ -9,7 +9,7 @@
     "sourceMap": true,
     "strict": true,
     "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "noFallthroughCasesInSwitch": true,
     "module": "umd",
     "moduleResolution": "node",

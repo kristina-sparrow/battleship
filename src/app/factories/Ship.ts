@@ -1,23 +1,26 @@
-interface Ship {
+export interface IShip {
   length: number;
-  hits: number[];
+  hits: Set<number>;
   hit(position: number): void;
   isSunk(): boolean;
 }
 
-export default function createShip(length: number): Ship {
-  const hits: number[] = [];
+export default function createShip(length: number): IShip {
+  const hits = new Set<number>();
 
   function hit(position: number): void {
-    if (hits.includes(position) || position < 0 || position >= length) {
-      return;
-    }
-    hits.push(position);
+    if (hits.has(position) || position < 0 || position >= length) return;
+    hits.add(position);
   }
 
   function isSunk(): boolean {
-    return hits.length === length;
+    return hits.size === length;
   }
 
-  return { length, hits, hit, isSunk };
+  return {
+    length,
+    hits,
+    hit,
+    isSunk,
+  };
 }
