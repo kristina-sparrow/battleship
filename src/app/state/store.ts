@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import gameReducer from "./gameSlice";
+import modalReducer from "./modalSlice";
+import playerReducer from "./playerSlice";
 
 const store = configureStore({
   reducer: {
     game: gameReducer,
+    modal: modalReducer,
+    player: playerReducer,
   },
 });
 
