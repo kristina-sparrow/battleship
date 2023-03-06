@@ -1,13 +1,14 @@
 import React from "react";
 import { IPlayer } from "../../factories/Player";
 
-interface Props {
+interface ICell {
   status?: string;
   owner?: IPlayer;
+  isFilled?: boolean;
   onClick?: () => void;
 }
 
-export default function Cell({ status, owner, onClick }: Props) {
+export default function Cell({ status, owner, isFilled, onClick }: ICell) {
   function getClassName() {
     switch (status) {
       case "default":
