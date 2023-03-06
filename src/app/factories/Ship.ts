@@ -1,11 +1,12 @@
 export type Ship = {
+  name?: string;
   length: number;
   hits: Set<number>;
   hit(position: number): void;
   isSunk(): boolean;
 };
 
-export default function createShip(length: number): Ship {
+export default function createShip(length: number, name?: string): Ship {
   const hits = new Set<number>();
 
   function hit(position: number): void {
@@ -18,6 +19,7 @@ export default function createShip(length: number): Ship {
   }
 
   return {
+    name,
     length,
     hits,
     hit,

@@ -5,7 +5,7 @@ type Cell = {
   status?: string;
   owner?: Player;
   isFilled?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
 };
 
 export default function Cell({ status, owner, isFilled, onClick }: Cell) {

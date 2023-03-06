@@ -1,17 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
 import { Gameboard } from "../../factories/Gameboard";
 import { Player } from "../../factories/Player";
 import Cell from "./Cell";
 import { v4 as uuidv4 } from "uuid";
 
 type Board = {
-  gameboard?: Gameboard;
+  gameboard: Gameboard;
   owner?: Player;
   enemy?: Player;
   onCellClick?: (x: number, y: number) => void;
 };
 
 export default function Board({ gameboard, owner, enemy, onCellClick }: Board) {
+  const { isStarted } = useSelector((state: RootState) => state.game);
+
   function loadCells() {
     return gameboard.board.map((columns, row) =>
       columns.map((cell, column) => {
@@ -47,17 +51,16 @@ export default function Board({ gameboard, owner, enemy, onCellClick }: Board) {
       return (
         <Cell
           key={uuidv4()}
-          isFilled={isFilled}
+          isFilled={!!isFilled}
           onClick={() => onCellClick(row, column)}
         />
       );
     });
   }
 
-  // figure out how to get redux state here
   return (
     <div className="board-container">
-      {isGameStarted ? loadCells() : loadPlacementCells()}
+      {isStarted ? loadCells() : loadPlacementCells()}
     </div>
   );
 }
