@@ -1,5 +1,4 @@
-import { IShip } from "./Ship";
-import createShip from "./Ship";
+import createShip, { Ship } from "./Ship";
 
 const BOARD_SIZE = 10;
 const SHIP_CONFIG = [
@@ -10,19 +9,19 @@ const SHIP_CONFIG = [
   createShip(2),
 ];
 
-export interface IGameboard {
-  board: (IShip | null)[][];
+export type Gameboard = {
+  board: (Ship | null)[][];
   missedShots: boolean[][];
   initialize: () => void;
   placeShip: (
-    ship: IShip,
+    ship: Ship,
     row: number,
     column: number,
     isVertical: boolean
   ) => boolean;
   placeShipsRandomly: () => void;
   isPlacementPossible: (
-    ship: IShip,
+    ship: Ship,
     row: number,
     column: number,
     isVertical: boolean
@@ -31,9 +30,9 @@ export interface IGameboard {
   getHitIndex: (row: number, column: number) => number;
   isGameOver: () => boolean;
   isEmpty: () => boolean;
-}
+};
 
-export default function createGameboard(): IGameboard {
+export default function createGameboard(): Gameboard {
   const board = Array.from({ length: BOARD_SIZE }, () =>
     Array.from({ length: BOARD_SIZE }, () => null)
   );
@@ -47,7 +46,7 @@ export default function createGameboard(): IGameboard {
   }
 
   function placeShip(
-    ship: IShip,
+    ship: Ship,
     row: number,
     column: number,
     isVertical: boolean
@@ -80,7 +79,7 @@ export default function createGameboard(): IGameboard {
   }
 
   function isPlacementPossible(
-    ship: IShip,
+    ship: Ship,
     row: number,
     column: number,
     isVertical: boolean

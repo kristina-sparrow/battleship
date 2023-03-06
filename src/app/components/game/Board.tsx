@@ -1,22 +1,17 @@
 import React from "react";
-import { IGameboard } from "../../factories/Gameboard";
-import { IPlayer } from "../../factories/Player";
+import { Gameboard } from "../../factories/Gameboard";
+import { Player } from "../../factories/Player";
 import Cell from "./Cell";
 import { v4 as uuidv4 } from "uuid";
 
-interface IBoard {
-  gameboard?: IGameboard;
-  owner?: IPlayer;
-  enemy?: IPlayer;
+type Board = {
+  gameboard?: Gameboard;
+  owner?: Player;
+  enemy?: Player;
   onCellClick?: (x: number, y: number) => void;
-}
+};
 
-export default function Board({
-  gameboard,
-  owner,
-  enemy,
-  onCellClick,
-}: IBoard) {
+export default function Board({ gameboard, owner, enemy, onCellClick }: Board) {
   function loadCells() {
     return gameboard.board.map((columns, row) =>
       columns.map((cell, column) => {

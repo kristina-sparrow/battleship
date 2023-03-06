@@ -1,20 +1,20 @@
-import { IGameboard } from "./Gameboard";
+import { Gameboard } from "./Gameboard";
 
-export interface IPlayer {
+export type Player = {
   name: string;
   alreadyHitCoords: number[][];
-  attack(positionX: number, positionY: number, gameboard: IGameboard): void;
-  randomAttack(gameboard: IGameboard): void;
+  attack(positionX: number, positionY: number, gameboard: Gameboard): void;
+  randomAttack(gameboard: Gameboard): void;
   hasAlreadyHit(positionX: number, positionY: number): boolean;
-}
+};
 
-export default function createPlayer(name: string): IPlayer {
+export default function createPlayer(name: string): Player {
   const alreadyHitCoords: number[][] = [];
 
   const attack = (
     positionX: number,
     positionY: number,
-    gameboard: IGameboard
+    gameboard: Gameboard
   ): void => {
     if (hasAlreadyHit(positionX, positionY)) return;
 
@@ -22,7 +22,7 @@ export default function createPlayer(name: string): IPlayer {
     gameboard.receiveAttack(positionX, positionY);
   };
 
-  function randomAttack(gameboard: IGameboard): void {
+  function randomAttack(gameboard: Gameboard): void {
     if (alreadyHitCoords.length === 100) return;
 
     let positionX = Math.floor(Math.random() * 10);

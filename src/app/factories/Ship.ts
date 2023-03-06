@@ -1,11 +1,11 @@
-export interface IShip {
+export type Ship = {
   length: number;
-  hits?: Set<number>;
-  hit?(position: number): void;
-  isSunk?(): boolean;
-}
+  hits: Set<number>;
+  hit(position: number): void;
+  isSunk(): boolean;
+};
 
-export default function createShip(length: number): IShip {
+export default function createShip(length: number): Ship {
   const hits = new Set<number>();
 
   function hit(position: number): void {
